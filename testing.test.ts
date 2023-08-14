@@ -1,48 +1,58 @@
-const { it, expect, describe } = require("@jest/globals");
+import { test, expect, describe } from "@jest/globals";
+
 const {
-  renderGameLevel,
-  getCardsImages,
   arrCardsFlip,
-  min,
-  resGame,
+  arrCardsFlipDuplicate,
 } = require("./components/renderGameLevel");
 
-describe("renderGameLevel()", () => {
-  describe("getCardsImages", () => {
-    it("проверка на наличие i", () => {
-      const img = `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`;
-      const expected = `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`;
+describe("проверки", () => {
+  test("есть ли в массиве элементы", () => {
+    expect(arrCardsFlipDuplicate).not.toBeNull();
+  });
 
-      const res = renderGameLevel(getCardsImages(img, "${i}"));
+  test("есть ли картинка с определенным путём", () => {
+    expect(arrCardsFlip).toContain(
+      `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`,
+    );
+  });
 
-      expect(expected).toContainEqual(res);
-    });
+  test("сколько элементов в массиве", () => {
+    expect(arrCardsFlipDuplicate).toHaveLength(36);
+  });
+
+  //   it("проверка на наличие i", () => {
+  //     const img = `<img id="cards-click" data-index="" class="cards-suits" src="../static/img/рубашка.png">`;
+  //     const expected = `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`;
+
+  //     const res = renderGameLevel(getCardsImages(img, "${i}"));
+
+  //     expect(expected).toContainEqual(res);
+  //   });
 
   //   it("длина массива"),
   //     () => {
   //       const arr = new arrCardsFlip();
 
-  //       arr.addItem({name: iCard});
+  //       arr.addItem({ name: iCard });
 
   //       expect(arr.items).toHaveLength(36);
   //     };
-  });
+  // });
 
-  it("проверка на null", () => {
-    const min = 3;
-    const expected = null;
+  // it("проверка на null", () => {
+  //   const min = 3;
+  //   const expected = null;
 
-    const res = renderGameLevel(min, "null");
+  //   const res = renderGameLevel(min, "null");
 
-    expect(expected).toBeNull(res);
-  });
+  //   expect(expected).toBeNull(res);
+  // });
 
-  it("проверка на ложь", () => {
-    const fal = true;
-    const expected = false;
+  // it("проверка на ложь", () => {
+  //   const fal = true;
+  //   const expected = false;
 
-    const res = renderGameLevel(resGame(fal, false));
+  //   const res = renderGameLevel(resGame(fal, false));
 
-    expect(expected).toBeFalsy(res);
-  });
-})
+  //   expect(expected).toBeFalsy(res);
+});
