@@ -22,9 +22,9 @@ describe("renderGameLevel()", () => {
       () => {
         const arr = new arrCardsFlip();
 
-        arr.addItem(name: iCard);
+        arr.addItem({neme: iCard});
 
-        expect(arr.items).toHaveLength(1);
+        expect(arr.items).toHaveLength(36);
       };
   });
 
