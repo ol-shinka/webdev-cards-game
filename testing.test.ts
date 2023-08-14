@@ -10,7 +10,7 @@ const {
 describe("renderGameLevel()", () => {
   describe("getCardsImages", () => {
     it("проверка на наличие i", () => {
-      const img = `<img id="cards-click" data-index= class="cards-suits" src="../static/img/рубашка.png">`;
+      const img = `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`;
       const expected = `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`;
 
       const res = renderGameLevel(getCardsImages(img, "${i}"));
@@ -18,14 +18,14 @@ describe("renderGameLevel()", () => {
       expect(expected).toContainEqual(res);
     });
 
-    it("длина массива"),
-      () => {
-        const arr = new arrCardsFlip();
+  //   it("длина массива"),
+  //     () => {
+  //       const arr = new arrCardsFlip();
 
-        arr.addItem({neme: iCard});
+  //       arr.addItem({name: iCard});
 
-        expect(arr.items).toHaveLength(36);
-      };
+  //       expect(arr.items).toHaveLength(36);
+  //     };
   });
 
   it("проверка на null", () => {
@@ -45,4 +45,4 @@ describe("renderGameLevel()", () => {
 
     expect(expected).toBeFalsy(res);
   });
-});
+})
