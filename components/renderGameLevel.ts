@@ -110,13 +110,15 @@ export function renderGameLevel(levelGame: number, appEl: HTMLElement | null) {
   setTimeout(flipСards, 5000);
 
   function twoCards(firstIndexCard: number, secondIndexCard: number) {
-    if (arrCardsFlip[firstIndexCard] === arrCardsFlip[secondIndexCard]) {
-      flipСards();
-    } else {
-      (fontGameCards as HTMLElement).style.opacity = ".2";
-      (modalGameHTML as HTMLElement).style.display = "block";
-      resultGame(resGame, modalGameHTML, currentDate, combDate);
-      clearInterval(id);
+    if (firstCard !== null && secondCard !== null) {
+      if (arrCardsFlip[firstIndexCard] === arrCardsFlip[secondIndexCard]) {
+        flipСards();
+      } else {
+        (fontGameCards as HTMLElement).style.opacity = ".2";
+        (modalGameHTML as HTMLElement).style.display = "block";
+        resultGame(resGame, modalGameHTML, currentDate, combDate);
+        clearInterval(id);
+      }
     }
   }
 }

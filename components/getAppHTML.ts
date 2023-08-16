@@ -1,9 +1,9 @@
 import { renderGame } from "./render";
-import { renderGameLevel } from "./renderGameLevel";
+//import { renderGameLevel } from "./renderGameLevel";
 
 export function getAppHTML(
   arrCardsFlipDuplicate: Array<string>,
-  appEl: HTMLElement,
+  appEl: HTMLElement | null,
 ) {
   const appHTML = `   
     <div class="game-cards">
@@ -17,7 +17,7 @@ export function getAppHTML(
             <span class="game-cards-timer__time">.</span>  
              <span class="game-cards-timer__time" id="sec">00</span> 
          </div>
-         <button class="game-box__button" id="restart-button" type="submit">Начать заново</button>
+         <button class="restart-button" id="restart-button" type="submit">Начать заново</button>
      </header>
      <div class="game-cards__suits" id="suits">${arrCardsFlipDuplicate.join(
        "",
