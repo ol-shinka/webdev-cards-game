@@ -3,6 +3,7 @@ import { arrCardsImages } from "./arrCardsImages";
 import { getAppHTML, resultGame } from "./getAppHTML";
 import { gameTimer } from "./timer";
 import { renderGame } from "./render";
+import { getCardsImages } from "./utils";
 
 export function renderGameLevel(levelGame: number, appEl: HTMLElement | null) {
   const min: number = 0;
@@ -17,22 +18,12 @@ export function renderGameLevel(levelGame: number, appEl: HTMLElement | null) {
   let resGame: boolean = false;
   let id: NodeJS.Timer;
 
-  const arrCardsFlip: Array<string> = [];
+  const arrCardsFlip: Array<string> = getCardsImages(levelGame);
   const arrCardsFlipSort = shuffle(arrCardsImages).slice(0, levelGame / 2);
   const arrCardsFlipDuplicate = shuffle(
     arrCardsFlipSort.concat(arrCardsFlipSort),
   );
 
-  function getCardsImages(levelGame: number) {
-    for (let i = 0; i < levelGame; i++) {
-      arrCardsFlip.push(
-        `<img id="cards-click" data-index="${i}" class="cards-suits" src="../static/img/рубашка.png">`,
-      );
-    }
-    return arrCardsFlip;
-  }
-
-  getCardsImages(levelGame);
 
   if (appEl) {
     appEl.innerHTML = "";
@@ -110,13 +101,15 @@ export function renderGameLevel(levelGame: number, appEl: HTMLElement | null) {
   setTimeout(flipСards, 5000);
 
   function twoCards(firstIndexCard: number, secondIndexCard: number) {
-    if (arrCardsFlip[firstIndexCard] === arrCardsFlip[secondIndexCard]) {
-      flipСards();
-    } else {
-      (fontGameCards as HTMLElement).style.opacity = ".2";
-      (modalGameHTML as HTMLElement).style.display = "block";
-      resultGame(resGame, modalGameHTML, currentDate, combDate);
-      clearInterval(id);
+    if (firstCard !== null && secondCard !== null) {
+      if (arrCardsFlip[firstIndexCard] === arrCardsFlip[secondIndexCard]) {
+        flipСards();
+      } else {
+        (fontGameCards as HTMLElement).style.opacity = ".2";
+        (modalGameHTML as HTMLElement).style.display = "block";
+        resultGame(resGame, modalGameHTML, currentDate, combDate);
+        clearInterval(id);
+      }
     }
   }
 }

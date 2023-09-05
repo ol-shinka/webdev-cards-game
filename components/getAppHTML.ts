@@ -1,8 +1,9 @@
 import { renderGame } from "./render";
+//import { renderGameLevel } from "./renderGameLevel";
 
 export function getAppHTML(
   arrCardsFlipDuplicate: Array<string>,
-  appEl: HTMLElement,
+  appEl: HTMLElement | null,
 ) {
   const appHTML = `   
     <div class="game-cards">
@@ -16,13 +17,22 @@ export function getAppHTML(
             <span class="game-cards-timer__time">.</span>  
              <span class="game-cards-timer__time" id="sec">00</span> 
          </div>
-         <button class="game-box__button" id="restart-button" type="submit">Начать заново</button>
+         <button class="restart-button" id="restart-button" type="submit">Начать заново</button>
      </header>
      <div class="game-cards__suits" id="suits">${arrCardsFlipDuplicate.join(
        "",
      )}</div>
     </div>  `;
-  appEl.innerHTML = appHTML;
+
+  if (appEl) {
+    appEl.innerHTML = appHTML;
+    (document.getElementById("restart-button") as HTMLElement).addEventListener(
+      "click",
+      () => {
+        renderGame();
+      },
+    );
+  }
 }
 
 export function resultGame(
@@ -61,7 +71,7 @@ export function resultGame(
            }</h3>
            <p class="modal__text">Затраченное время</p>   
            <div class="modal__time">${spentTime}</div>
-           <button class="game-box__button modal__button">Начать заново</button>
+           <button class="modal__button">Начать заново</button>
            </div>`;
 
   if (modalGameHTML) {

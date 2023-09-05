@@ -1,22 +1,26 @@
 import { test, expect, describe } from "@jest/globals";
-
-const {
-  arrCardsFlip,
-  reversalCardsArr
-} = require("./components/renderGameLevel");
+const { arrCardsImages } = require("./components/arrCardsImages");
+const { arrCardsFlip } = require("./components/renderGameLevel");
+const { arrCardsFlipDuplicate } = require("./components/renderGameLevel");
+const { shuffle } = require("lodash");
+const { getCardsImages } = require("./components/utils");
 
 describe("проверки", () => {
   test("есть ли в массиве элементы", () => {
     expect(arrCardsFlip).not.toBeNull();
   });
 
-  test("есть ли картинка с определенным путём", () => {
-    expect(reversalCardsArr).toContain(
-      `<img id="cards-click" data-index="${36}" class="cards-suits" src="../static/img/рубашка.png">`,
-    );
+  test("проверка", () => {
+    const level = 3;
+    const cards = getCardsImages(level);
+    expect(cards).toHaveLength(level);
   });
 
-  test("сколько элементов в массиве", () => {
-    expect(reversalCardsArr).toHaveLength(36);
+  test("валиден ли массив с элементами", () => {
+    expect(shuffle(arrCardsFlipDuplicate)).not.toContain(true);
+  });
+
+  test("длина массива 36", () => {
+    expect(arrCardsImages).toHaveLength(36);
   });
 });

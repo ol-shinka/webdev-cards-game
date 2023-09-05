@@ -16,7 +16,7 @@ export function renderGame() {
             <input class="box-levels__radio" type="radio" id="radio3" name="radios" value="18">
             <label class="box-levels__label" for="radio3">3</label>
         </div>
-        <button class="game-box__button" type="submit">Старт</button>
+        <button class="start-button" type="submit">Старт</button>
     </form>
 </div>`;
 
